@@ -1,9 +1,5 @@
 # **Behavioral Cloning** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Behavioral Cloning Project**
@@ -25,9 +21,6 @@ The goals / steps of this project are the following:
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
-
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
 ### Files Submitted & Code Quality
@@ -54,15 +47,13 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 24 and 64 (model.py lines 55-58). The model includes RELU layers to introduce nonlinearity (code line 55-60), and the data is normalized in the model using a Keras lambda layer (code line 54). 
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The normalized data is the input to a stack of 3 convolution layers with 5x5 filter sizes and depths between 24 and 48 (model.py lines 55-57) that include a RELU activation layer each. Then, the model has two convolution layers with 3x3 filter sizes and depths of 64 that also include a RELU activation layer each. Finally, 4 fully-connected layers complete the model with a number of neurons 100. 50, 10, and 1, respectively.
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The data set is randomly shuffled to avoid overfitting (code line 69). Early termination is the strategy adopted to also avoid overfitting. After experimentation, the number of epochs is set to 3 due to the fact that the mse is no longer considerably minimnized (code line 69). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
