@@ -49,7 +49,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 24 and 64 (model.py lines 55-58). The model includes RELU layers to introduce nonlinearity (code line 55-60), and the data is normalized in the model using a Keras lambda layer (code line 54). 
 
-The normalized data is the input to a stack of 3 convolution layers with 5x5 filter sizes and depths between 24 and 48 (model.py lines 55-57) that include a RELU activation layer each. Then, the model has two convolution layers with 3x3 filter sizes and depths of 64 that also include a RELU activation layer each. Finally, 4 fully-connected layers complete the model with a number of neurons 100. 50, 10, and 1, respectively.
+The normalized data is the input to a stack of 3 convolution layers with 5x5 filter sizes and depths between 24 and 48 (model.py lines 55-57) that include a RELU activation layer each. Then, the model has two convolution layers with 3x3 filter sizes and depths of 64 that also include a RELU activation layer each. Finally, 4 fully-connected layers complete the model with a number of neurons of 100, 50, 10, and 1, respectively.
 
 #### 2. Attempts to reduce overfitting in the model
 
@@ -57,11 +57,11 @@ The data set is randomly shuffled to avoid overfitting (code line 69). Early ter
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 68).
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road and driving to the opposite direction. 
 
 For details about how I created the training data, see the next section. 
 
@@ -69,23 +69,21 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was based on NVIDIA's architecture (https://devblogs.nvidia.com/deep-learning-self-driving-cars/).
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+My first step was to use a convolution neural network model similar to the Traffic signs classifier. It was a LeNet architecture. I thought this model might be appropriate because both models extract relevant features from the images that can help to come up with an acceptable regression model. I used 10 epochs.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-To combat the overfitting, I modified the model so that ...
+To combat the overfitting, I modified the model so that I reduced epochs to 3. I got a non-everfitted model after this because the validation mse and the testing mse where similar.
 
-Then I ... 
+The next step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track. To improve the driving behavior in these cases, I changed the architeture for the NVIDIA one. By making this choice, I enhanced the performance of the vehicle of the tracked. However, the car still had problems by turning on pronounced curves. I decided to augment my training and validation sets by considereng the images from the right side and left side cameras with a factor correction of 0.2. 
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+At the end of the process, the vehicle was able to drive autonomously around the track without leaving the road.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 52-66) consisted of a convolution neural network with the following layers and layer sizes:
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
