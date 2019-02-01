@@ -103,9 +103,9 @@ I then recorded the vehicle recovering from the left side and right sides of the
 To augment the data sat, I used the images from the left-side camera and right-side camera with a correction of 0.2 degrees.
 
 #### Left-side camera
-![alt text][image3]
-#### Right-side camera
 ![alt text][image4]
+#### Right-side camera
+![alt text][image3]
 
 
 After the collection process, I had 4512 number of data points. I then preprocessed this data by cropping the upper part of the image where the threes and sky of the road are in order to delete useless information. 
