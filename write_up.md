@@ -15,12 +15,11 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./images/cnn.png "Model Visualization"
-[image2]: ./images/center.jpg "Grayscaling"
+[image2]: ./images/center.jpg "center"
 [image3]: ./images/right.jpg "Recovery Image"
 [image4]: ./images/left.jpg "Recovery Image"
 [image5]: ./images/architecture.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+
 
 ---
 ### Files Submitted & Code Quality
@@ -97,16 +96,16 @@ To capture good driving behavior, I first recorded two laps on track one using c
 ![alt text][image2]
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to come bach to the center of the lane.
-![alt text][image3]
-![alt text][image4]
+
+
 
 
 To augment the data sat, I used the images from the left-side camera and right-side camera with a correction of 0.2 degrees.
 
 #### Left-side camera
-![alt text][image6]
+![alt text][image3]
 #### Right-side camera
-![alt text][image7]
+![alt text][image4]
 
 
 After the collection process, I had 4512 number of data points. I then preprocessed this data by cropping the upper part of the image where the threes and sky of the road are in order to delete useless information. 
