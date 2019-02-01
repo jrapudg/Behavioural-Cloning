@@ -18,7 +18,7 @@ The goals / steps of this project are the following:
 [image2]: ./images/center.jpg "Grayscaling"
 [image3]: ./images/right.jpg "Recovery Image"
 [image4]: ./images/left.jpg "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
+[image5]: ./images/architecture.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
@@ -70,8 +70,9 @@ For details about how I created the training data, see the next section.
 #### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was based on NVIDIA's architecture (https://devblogs.nvidia.com/deep-learning-self-driving-cars/).
+![alt text][image1]
 
-My first step was to use a convolution neural network model similar to the Traffic signs classifier. It was a LeNet architecture. I thought this model might be appropriate because both models extract relevant features from the images that can help to come up with an acceptable regression model. I used 10 epochs.
+My first step was to use a convolution neural network model similar to the Traffic signs classifier. It was a LeNet architecture. I thought this model might be appropriate because it extracts relevant features from the images that can help to come up with an acceptable regression model. I used 10 epochs.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
@@ -87,7 +88,7 @@ The final model architecture (model.py lines 52-66) consisted of a convolution n
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
-![alt text][image1]
+![alt text][image5]
 
 #### 3. Creation of the Training Set & Training Process
 
@@ -95,24 +96,21 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to come bach to the center of the lane.
 ![alt text][image3]
 ![alt text][image4]
-![alt text][image5]
 
-Then I repeated this process on track two in order to get more data points.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+To augment the data sat, I used the images from the left-side camera and right-side camera with a correction of 0.2 degrees.
 
+#### Left-side camera
 ![alt text][image6]
+#### Right-side camera
 ![alt text][image7]
 
-Etc ....
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+After the collection process, I had 4512 number of data points. I then preprocessed this data by cropping the upper part of the image where the threes and sky of the road are in order to delete useless information. 
 
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by the matching of the validation set and training set accuracy. I used an adam optimizer so that manually training the learning rate wasn't necessary.
